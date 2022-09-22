@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -35,10 +31,10 @@ namespace MazeMigraine
             posx = x * dim;
             posy = y * dim;
 
-            topWall = new Rectangle()     { Width = dim, Height = 1};
-            rightWall = new Rectangle()   { Width = 1, Height = dim };
-            bottomWall = new Rectangle()  { Width = dim, Height = 1 };
-            leftWall = new Rectangle()    { Width = 1, Height = dim };
+            topWall = new Rectangle() { Width = dim, Height = 1 };
+            rightWall = new Rectangle() { Width = 1, Height = dim };
+            bottomWall = new Rectangle() { Width = dim, Height = 1 };
+            leftWall = new Rectangle() { Width = 1, Height = dim };
 
             topWall.Fill = Brushes.White;
             rightWall.Fill = Brushes.White;
@@ -47,7 +43,7 @@ namespace MazeMigraine
 
             Canvas.SetLeft(topWall, posx);
             Canvas.SetTop(topWall, posy);
-            Canvas.SetLeft(rightWall, (posx + dim)-rightWall.Width);
+            Canvas.SetLeft(rightWall, (posx + dim) - rightWall.Width);
             Canvas.SetTop(rightWall, posy);
             Canvas.SetLeft(bottomWall, posx);
             Canvas.SetTop(bottomWall, posy + dim);

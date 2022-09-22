@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
 namespace MazeMigraine
 {
@@ -53,7 +48,7 @@ namespace MazeMigraine
             List<SerializableMazeLevel> mazes = GetMazesByMode(mode);
             int count = mazes.Count;
 
-            switch(mode)
+            switch (mode)
             {
                 case "Easy":
                     levelname = "EZ_" + (count + 1);
@@ -100,7 +95,7 @@ namespace MazeMigraine
             string path = "";
             int i = 1;
 
-            switch(mode)
+            switch (mode)
             {
                 case "Easy":
                     path = "Mazes/EZ/EZ_";

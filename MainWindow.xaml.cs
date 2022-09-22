@@ -1,18 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace MazeMigraine
 {
@@ -44,10 +32,10 @@ namespace MazeMigraine
         public MainWindow()
         {
             InitializeComponent();
-            
+
             mp = new MediaPlayer();
             mp.MediaEnded += Mp_MediaEnded;
-            
+
             this.Title = "MAZE MIGRAINE MENU";
         }
 
@@ -56,7 +44,8 @@ namespace MazeMigraine
             gr_wrapper.Children.Clear();
             gr_wrapper.Children.Add(new UC_MenuPage());
 
-            if (canPlayAgain) {
+            if (canPlayAgain)
+            {
                 mp.Open(new Uri(@"C:\Users\IEUser\Desktop\MazeMigraine\bin\Debug\mp3s\SuspenseLoop.wav"));
                 mp.Play();
                 canPlayAgain = false;

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MazeMigraine
 {
@@ -45,14 +41,16 @@ namespace MazeMigraine
             set { dim = value; }
         }
 
-        public MazeLevel() {}
+        public MazeLevel() { }
 
         public MazeLevel(Cell[,] grid, int cols, int rows, int dim)
         {
             grid = new Cell[rows, cols];
 
-            for(int i = 0; i < rows; i++) {
-                for(int j = 0; j < cols; j++) {
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
                     grid[i, j] = new Cell(i, j, dim);
                 }
             }
@@ -66,8 +64,10 @@ namespace MazeMigraine
         {
             grid = new Cell[rows, cols];
 
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < cols; j++) {
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
                     grid[i, j] = new Cell(i, j, dim);
                 }
             }
@@ -79,19 +79,23 @@ namespace MazeMigraine
 
         public bool CanMove(int x1, int y1, int x2, int y2)
         {
-            if(x1 > x2) {
+            if (x1 > x2)
+            {
                 // Move left
                 return (grid[x1, y1].walls[3] && grid[x2, y2].walls[1]);
             }
-            else if(x1 < x2) {
+            else if (x1 < x2)
+            {
                 // Move right
                 return (grid[x1, y1].walls[1] && grid[x2, y2].walls[3]);
             }
-            else if(y1 > y2) {
+            else if (y1 > y2)
+            {
                 // Move up
                 return (grid[x1, y1].walls[0] && grid[x2, y2].walls[2]);
             }
-            else if(y1 < y2) {
+            else if (y1 < y2)
+            {
                 // Move down
                 return (grid[x1, y1].walls[2] && grid[x2, y2].walls[0]);
             }

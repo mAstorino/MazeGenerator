@@ -1,17 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MazeMigraine
 {
@@ -33,7 +22,7 @@ namespace MazeMigraine
             choosenMode = mode;
             ml = new MazeLevel();
 
-            switch(choosenMode)
+            switch (choosenMode)
             {
                 case "Easy":
                     ml.Rows = 10;
@@ -68,7 +57,7 @@ namespace MazeMigraine
             List<MazeLevel> mazes = new List<MazeLevel>();
             List<SerializableMazeLevel> smls = FileManager.GetMazesByMode(choosenMode);
 
-            foreach(SerializableMazeLevel sml in smls)
+            foreach (SerializableMazeLevel sml in smls)
             {
                 MazeLevel ml = SerializableMazeLevel.GetMazeLevel(sml);
                 mazes.Add(ml);
@@ -81,9 +70,12 @@ namespace MazeMigraine
         {
             // Play selected level
 
-            if(cb_existing_levels.SelectedItem == null) {
+            if (cb_existing_levels.SelectedItem == null)
+            {
                 MessageBox.Show("You have to select a level!");
-            } else {
+            }
+            else
+            {
                 MainWindow mw = ((MainWindow)Application.Current.MainWindow);
                 mw.Hide();
 
@@ -112,8 +104,10 @@ namespace MazeMigraine
             Cell[,] grid = new Cell[rows, cols];
             Cell current;
 
-            for(int i = 0; i < rows; i++) {
-                for(int j = 0; j < cols; j++) {
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
                     grid[i, j] = new Cell(i, j, dim);
                 }
             }
@@ -127,16 +121,18 @@ namespace MazeMigraine
 
 
             // 2. While there are unvisited cells:
-            while(!CheckIfDone(grid)) {
-                
+            while (!CheckIfDone(grid))
+            {
+
                 // 1. If the current cell has any neighbour
                 //    which have not been visited
-                if(CheckNeighbours(grid, current)) {
+                if (CheckNeighbours(grid, current))
+                {
                     List<Cell> neighbours = new List<Cell>();
 
                     if (current.y - 1 >= 0)
-                        if (!grid[current.x, current.y-1].hasBeenVisited)
-                            neighbours.Add(grid[current.x, current.y-1]);
+                        if (!grid[current.x, current.y - 1].hasBeenVisited)
+                            neighbours.Add(grid[current.x, current.y - 1]);
 
                     if (current.y + 1 < rows)
                         if (!grid[current.x, current.y + 1].hasBeenVisited)
@@ -158,7 +154,7 @@ namespace MazeMigraine
 
                     // 3. Remove the walls between the current
                     //    wall and the choosen cell
-                    if(current.y > neighbours[pick].y)
+                    if (current.y > neighbours[pick].y)
                     {
                         grid[current.x, current.y].RemoveWall(0);
                         grid[current.x, neighbours[pick].y].RemoveWall(2);
@@ -185,7 +181,7 @@ namespace MazeMigraine
                     grid[current.x, current.y].hasBeenVisited = true;
                 }
                 // 2. Else if stack is not empty
-                else if(stack.Count > 0)
+                else if (stack.Count > 0)
                 {
                     current = stack.Pop();
                 }
@@ -194,12 +190,15 @@ namespace MazeMigraine
             return grid;
         }
 
-        public bool CheckIfDone(Cell[,] grid) {
+        public bool CheckIfDone(Cell[,] grid)
+        {
             int numOfCells = ml.Rows * ml.Cols;
             int visitedCells = 0;
 
-            for(int i = 0; i < ml.Rows; i++) {
-                for(int j = 0; j < ml.Cols; j++) {
+            for (int i = 0; i < ml.Rows; i++)
+            {
+                for (int j = 0; j < ml.Cols; j++)
+                {
                     if (grid[i, j].hasBeenVisited)
                         visitedCells++;
                 }
@@ -212,8 +211,9 @@ namespace MazeMigraine
         {
             bool found = false;
 
-            if(curr.y + 1 < ml.Rows) {
-                found = !grid[curr.x,curr.y + 1].hasBeenVisited;
+            if (curr.y + 1 < ml.Rows)
+            {
+                found = !grid[curr.x, curr.y + 1].hasBeenVisited;
                 if (found) return found;
             }
 

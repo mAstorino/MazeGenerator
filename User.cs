@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace MazeMigraine
 {
@@ -35,7 +31,7 @@ namespace MazeMigraine
         public User(string n, string t, string ln)
         {
             nickname = n;
-            
+
             Game g = new Game(ln, t);
             playedGames = new List<Game>();
         }
@@ -49,12 +45,12 @@ namespace MazeMigraine
         {
             string result = nickname;
 
-            foreach(Game game in playedGames)
+            foreach (Game game in playedGames)
                 result += string.Format("\n* {0}  :  {1}", game.LevelName, game.Time);
 
             result += "\n\n";
 
-            return result;    
+            return result;
         }
     }
 }

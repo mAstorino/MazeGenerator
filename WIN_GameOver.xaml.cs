@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MazeMigraine
 {
@@ -38,10 +27,11 @@ namespace MazeMigraine
             saveToFile = stf;
 
             maze = m;
-            
+
             int minutes = 0;
 
-            while(t >= 60) {
+            while (t >= 60)
+            {
                 t -= 60;
                 minutes++;
             }
@@ -59,9 +49,12 @@ namespace MazeMigraine
         {
             string name = tb_name.Text;
 
-            if(name.Equals("")) {
+            if (name.Equals(""))
+            {
                 MessageBox.Show("Fill the name field");
-            } else {
+            }
+            else
+            {
 
                 if (saveToFile)
                     FileManager.AddMazeToFile(maze, playedMode);
@@ -73,16 +66,17 @@ namespace MazeMigraine
                 List<User> users = FileManager.GetPlayersFromXml();
 
                 bool found = false;
-                foreach(User u in users)
+                foreach (User u in users)
                 {
-                    if(user.Nickname.Equals(u.Nickname))
+                    if (user.Nickname.Equals(u.Nickname))
                     {
                         found = true;
                         u.AddGame(game);
                     }
                 }
 
-                if(!found) {
+                if (!found)
+                {
                     user.AddGame(game);
                     users.Add(user);
                     FileManager.AddPlayerToXml(user);

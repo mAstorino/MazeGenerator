@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MazeMigraine
 {
@@ -29,8 +25,10 @@ namespace MazeMigraine
 
             mazeWalls = new wallSet[rows, cols];
 
-            for(int i = 0; i < rows; i++) {
-                for(int j = 0; j < cols; j++) {
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
                     mazeWalls[i, j].walls = new bool[4] { false, false, false, false };
                 }
             }
@@ -40,8 +38,10 @@ namespace MazeMigraine
         {
             SerializableMazeLevel sml = new SerializableMazeLevel(ml.Cols, ml.Rows, ml.Dim, ml.Name);
 
-            for(int i = 0; i < ml.Rows; i++) {
-                for(int j = 0; j < ml.Cols; j++) {
+            for (int i = 0; i < ml.Rows; i++)
+            {
+                for (int j = 0; j < ml.Cols; j++)
+                {
 
                     for (int k = 0; k < 4; k++)
                         sml.mazeWalls[i, j].walls[k] = ml.Grid[i, j].walls[k];
@@ -56,8 +56,10 @@ namespace MazeMigraine
             MazeLevel ml = new MazeLevel(sml.cols, sml.rows, sml.dim);
             ml.Name = sml.name;
 
-            for(int i = 0; i < sml.rows; i++) {
-                for(int j = 0; j < sml.cols; j++) {
+            for (int i = 0; i < sml.rows; i++)
+            {
+                for (int j = 0; j < sml.cols; j++)
+                {
 
                     for (int k = 0; k < 4; k++)
                         ml.Grid[i, j].walls[k] = sml.mazeWalls[i, j].walls[k];
